@@ -1,0 +1,18 @@
+.main-image {
+  width: 400px;
+  height: auto;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+:host ::ng-deep .p-progressbar {
+  .p-progressbar-value {
+    background-color: green;
+  }
+  .p-progressbar-label {
+    color: white;
+  }
+}

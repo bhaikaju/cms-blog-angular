@@ -1,0 +1,61 @@
+<div class="row">
+  <p-toast position='bottom-center'></p-toast>
+  <div class="col-md-6">
+    <h3>Categories</h3>
+    <p-table [value]="categories" dataKey="id" responsiveLayout="scroll" (onEditComplete)="update($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+        <tr>
+          <td [pEditableColumn]="product" [pEditableColumnField]="'title'" [pEditableColumnRowIndex]="rowIndex">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="product.title">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{product.title}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td [pEditableColumn]="product" [pEditableColumnField]="'description'" [pEditableColumnRowIndex]="rowIndex">
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="product.description" required>
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{product.description}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td class="text-center">
+            <i class="pi pi-trash text-danger cursor-pointer" (click)="remove(rowIndex, product.id)"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+  <div class="col-md-4 offset-md-1 my-sm-4">
+    <h3>Create New Category</h3>
+    <form #cat="ngForm" (ngSubmit)="create(cat)">
+      <div class="mb-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" placeholder="Title" id="title" name="title" ngModel>
+      </div>
+      <div class="mb-3">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" placeholder="Description" id="description" name="description" ngModel>
+      </div>
+      <div class="my-3">
+        <button class="btn btn-success" type="submit">Create Category</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

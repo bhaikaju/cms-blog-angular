@@ -1,0 +1,76 @@
+<ng-container *ngIf="post">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Update Post </h1>
+      <hr>
+    </div>
+    <div class="col-md-2 ">
+
+    </div>
+    <div class="col-md-4 ">
+      <h3>Main Image</h3>
+    </div>
+  </div>
+  <form  (ngSubmit)="updatePost()">
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="title">Title</label>
+          <input type="text" id="title" class="form-control" name="title" [(ngModel)]="post.title">
+        </div>
+
+        <div class="mb-3">
+          <label for="content">Content</label>
+          <editor
+            id="content"
+            apiKey="3rygim2zami94a25ku3ifdatf8en1h3kl2uqeb2nwghugo95"
+            [init]="{
+     height: 500,
+     menubar: false,
+     plugins: [
+       'advlist autolink lists link image charmap print preview anchor',
+       'searchreplace visualblocks code fullscreen',
+       'insertdatetime media table paste code help wordcount'
+     ],
+     toolbar: 'undo redo | formatselect | bold italic backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+   }"
+            name="content"
+            [(ngModel)]="post.content"
+          ></editor>
+        </div>
+        <div class="mb-3">
+          <label for="categories">Categories</label>
+          <br>
+          <select id="categories" class="form-control" name="category"  [(ngModel)]="post.category.id">
+            <ng-container *ngFor="let c of categories">
+              <option [value]="c.id">{{c.title}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="my-3">
+          <button class="btn btn-warning" type="submit">Update Post</button>
+        </div>
+
+
+      </div>
+      <div class="col-md-2 ">
+
+      </div>
+      <div class="col-md-4 mx-auto">
+        <div class="my-2">
+          <p-progressBar [value]="uploadProgress" *ngIf="showProgress"></p-progressBar>
+        </div>
+        <input type="file" (change)="previewImage($event)" name="mainImageUrl" accept="image/*" class="d-none" #filebrowser>
+        <div class="main-image">
+          <img [src]="post?.mainImageUrl" alt="{{altText}}" class="img-fluid">
+        </div>
+        <button pButton (click)="filebrowser.click()" type="button" class="d-block my-4 p-button-success p-button-raised"><i class="pi pi-upload"></i> &nbsp;&nbsp;File Upload</button>
+      </div>
+      <p-toast position="bottom-center"></p-toast>
+    </div>
+  </form>
+</ng-container>
+
+
+<p-toast position="bottom-center"></p-toast>

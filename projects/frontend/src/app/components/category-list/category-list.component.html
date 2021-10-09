@@ -1,0 +1,13 @@
+<!-- Categories widget-->
+<div class="card mb-4">
+  <div class="card-header">Categories</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let c of category | async">
+        <ul class="list-unstyled mb-0">
+          <li><a routerLink="/post/category/{{c.title}}">{{c.title}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

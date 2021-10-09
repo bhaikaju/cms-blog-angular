@@ -1,0 +1,72 @@
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      All Posts
+    </div>
+    <div class="card-body">
+      <p-table #dt1 [value]="posts" responsiveLayout="scroll" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[5,10,15,20,50]" styleClass="p-datatable-gridlines" [paginator]="true"
+               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+               [globalFilterFields]="['title', 'category.title', 'user.firstname']"
+      >
+
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <button pButton class="p-button p-button-info p-button-outlined" (click)="clear(dt1)">
+              <i class="pi pi-filter-slash"></i>&nbsp; Clear
+            </button>
+            <span class="p-input-icon-left ml-auto">
+              <input pInputText type="text" (input)="filterText($event)" placeholder="Search keyword" #search class="p-inputtext p-inputtext-sm"/>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>
+              Main Image
+            </th>
+            <th pSortableColumn="title">Title
+              <p-sortIcon field="title"></p-sortIcon>
+            </th>
+            <th pSortableColumn="createdOn">Created On
+              <p-sortIcon field="createdOn"></p-sortIcon>
+            </th>
+            <th pSortableColumn="category.title">Category
+              <p-sortIcon field="category.title"></p-sortIcon>
+            </th>
+            <th pSortableColumn="user.firstname">Author
+              <p-sortIcon field="user.firstname"></p-sortIcon>
+            </th>
+            <th pSortableColumn="status">Status
+              <p-sortIcon field="status"></p-sortIcon>
+            </th>
+            <th>
+              Actions
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+          <tr>
+            <td>
+              <img src="{{post.mainImageUrl}}" alt="{{post.title}}" width="200px">
+            </td>
+            <td>{{post.title}}</td>
+            <td>{{post.createdOn | date: 'medium'}}</td>
+            <td>{{post.category.title}}</td>
+            <td>{{post.user.firstname}}, {{post.user.lastname}}</td>
+            <td>Published</td>
+            <td>
+              <div class="d-flex justify-content-start align-items-center">
+                <span class="mx-3 text-warning cursor-pointer d-inline-block" routerLink="/posts/edit/{{post.slug}}"><i class="pi pi-pencil"></i></span>
+                <span class="text-danger cursor-pointer d-inline-block" (click)="removePost(post.id)"><i class="pi pi-trash"></i></span>
+              </div>
+
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+<p-toast position="bottom-center"></p-toast>
+

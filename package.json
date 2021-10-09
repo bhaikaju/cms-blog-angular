@@ -6,11 +6,14 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:frontend": "ng serve frontend --port 4200",
+    "start:backend": "ng serve backend --port 4300"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.1.1",
+    "@angular/cdk": "^12.2.8",
     "@angular/common": "~12.1.1",
     "@angular/compiler": "~12.1.1",
     "@angular/core": "~12.1.1",
@@ -18,11 +21,18 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@tinymce/tinymce-angular": "^4.2.4",
+    "moment": "^2.29.1",
+    "ngx-cookie-service": "^12.0.3",
+    "primeflex": "^3.0.1",
+    "primeicons": "^4.1.0",
+    "primeng": "^12.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~12.1.4",
     "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
     "@types/jasmine": "~3.6.0",
@@ -33,6 +43,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^12.1.0",
     "typescript": "~4.3.2"
   }
 }
